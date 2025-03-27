@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2020 The ZMK Contributors
  * Copyright (c) 2023 Innaworks Development Limited, trading as MoErgo
@@ -13,13 +14,11 @@
  */
 
 #include <behaviors.dtsi>
+/* Include all behavior includes needed */
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/rgb.h>
-
-#define HYPER LC(LS(LG(LALT)))
 
 /* On demand includes */
 
@@ -52,47 +51,42 @@
             bindings = <&mo LAYER_Lower>, <&to LAYER_Lower>;
         };
 
-        // Custom hold-tap behaviors for copy, cut, and paste
-        copy_key: copy_key {
+        // Custom hold-tap behaviors for common keyboard shortcuts
+        copy_hold_tap: copy_hold_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "COPY_KEY";
-            #binding-cells = <2>;
-            tapping-term-ms = <500>;  // 500ms hold time
-            quick-tap-ms = <200>;
+            label = "COPY_HOLD_TAP";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        cut_key: cut_key {
-            compatible = "zmk,behavior-hold-tap";
-            label = "CUT_KEY";
-            #binding-cells = <2>;
-            tapping-term-ms = <500>;  // 500ms hold time
-            quick-tap-ms = <200>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        paste_key: paste_key {
-            compatible = "zmk,behavior-hold-tap";
-            label = "PASTE_KEY";
-            #binding-cells = <2>;
-            tapping-term-ms = <500>;  // 500ms hold time
-            quick-tap-ms = <200>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        select_all_key: select_all_key {
-            compatible = "zmk,behavior-hold-tap";
-            label = "SELECT_ALL_KEY";
-            #binding-cells = <2>;
-            tapping-term-ms = <500>;  // 500ms hold time
-            quick-tap-ms = <200>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp C>, <&kp LC(C)>;
         };
 
+        paste_hold_tap: paste_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "PASTE_HOLD_TAP";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&kp V>, <&kp LC(V)>;
+        };
+
+        cut_hold_tap: cut_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CUT_HOLD_TAP";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&kp X>, <&kp LC(X)>;
+        };
+
+        select_all_hold_tap: select_all_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SELECT_ALL_HOLD_TAP";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&kp A>, <&kp LC(A)>;
+        };
     };
 };
 
@@ -380,8 +374,8 @@
                &kp F1    &kp F2   &kp F3    &kp F4     &kp F5                                                                                  &kp F6     &kp F7    &kp F8    &kp F9    &kp F10
             &kp EQUAL    &kp N1   &kp N2    &kp N3     &kp N4  &kp N5                                                                  &kp N6  &kp N7     &kp N8    &kp N9    &kp N0   &kp BSLH
               &kp TAB     &kp Q    &kp W     &kp E      &kp R   &kp T                                                                   &kp Y   &kp U      &kp I     &kp O     &kp P  &kp MINUS
-              &kp ESC     &select_all_key LCTRL A A    &kp S     &kp D      &kp F   &kp G                                                                   &kp H   &kp J      &kp K     &kp L  &kp SEMI    &kp SQT
-            &kp GRAVE     &kp Z    &cut_key LCTRL X X     &copy_key LCTRL C C      &paste_key LCTRL V V   &kp B  &kp LSHFT  &kp LCTRL    &lower  &kp LGUI  &kp RCTRL  &kp RSHFT   &kp N   &kp M  &kp COMMA   &kp DOT  &kp FSLH  &kp PG_UP
+              &kp ESC     &select_all_hold_tap    &kp S     &kp D      &kp F   &kp G                                                                   &kp H   &kp J      &kp K     &kp L  &kp SEMI    &kp SQT
+            &kp GRAVE     &kp Z    &cut_hold_tap     &copy_hold_tap      &paste_hold_tap   &kp B  &kp LSHFT  &kp LCTRL    &lower  &kp LGUI  &kp RCTRL  &kp RSHFT   &kp N   &kp M  &kp COMMA   &kp DOT  &kp FSLH  &kp PG_UP
  &magic LAYER_Magic 0  &kp HOME  &kp END  &kp LEFT  &kp RIGHT           &kp BSPC    &kp DEL  &kp LALT  &kp RALT    &kp RET  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT  &kp PG_DN
             >;
         };
@@ -414,7 +408,7 @@
  &kp NUMBER_1  &kp NUMBER_7  &kp NUMBER_3  &kp NUMBER_9  &kp NUMBER_5  &kp NUMBER_0                                                                                      &kp NUMBER_0  &kp NUMBER_5  &kp NUMBER_9  &kp NUMBER_3  &kp NUMBER_7  &kp NUMBER_1
  &kp NUMBER_2  &kp NUMBER_8  &kp NUMBER_4  &kp NUMBER_0  &kp NUMBER_6  &kp NUMBER_1                                                                                      &kp NUMBER_1  &kp NUMBER_6  &kp NUMBER_0  &kp NUMBER_4  &kp NUMBER_8  &kp NUMBER_2
  &kp NUMBER_3  &kp NUMBER_9  &kp NUMBER_5  &kp NUMBER_1  &kp NUMBER_7  &kp NUMBER_2                                                                                      &kp NUMBER_2  &kp NUMBER_7  &kp NUMBER_1  &kp NUMBER_5  &kp NUMBER_9  &kp NUMBER_3
- &kp NUMBER_4  &kp NUMBER_0  &cut_key LCTRL X X  &copy_key LCTRL C C  &paste_key LCTRL V V  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_6  &kp NUMBER_5  &kp NUMBER_4  &kp NUMBER_3  &kp NUMBER_8  &kp NUMBER_2  &kp NUMBER_6  &kp NUMBER_0  &kp NUMBER_4
+ &kp NUMBER_4  &kp NUMBER_0  &kp NUMBER_6  &kp NUMBER_2  &kp NUMBER_8  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_6  &kp NUMBER_5  &kp NUMBER_4  &kp NUMBER_3  &kp NUMBER_8  &kp NUMBER_2  &kp NUMBER_6  &kp NUMBER_0  &kp NUMBER_4
  &kp NUMBER_5  &kp NUMBER_1  &kp NUMBER_7  &kp NUMBER_3  &kp NUMBER_9                &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_9  &kp NUMBER_8  &kp NUMBER_7                &kp NUMBER_9  &kp NUMBER_3  &kp NUMBER_7  &kp NUMBER_1  &kp NUMBER_5
             >;
         };
