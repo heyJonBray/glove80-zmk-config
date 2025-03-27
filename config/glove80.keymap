@@ -310,7 +310,26 @@
 /* Automatically generated macro definitions */
 / {
     macros {
+        parens_macro: parens_macro {
+            label = "PARENS_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR>, <&kp RPAR>, <&kp LEFT_ARROW>;
+        };
 
+        braces_macro: braces_macro {
+            label = "BRACES_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBRC>, <&kp RBRC>, <&kp LEFT_ARROW>;
+        };
+
+        curly_macro: curly_macro {
+            label = "CURLY_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBRACE>, <&kp RBRACE>, <&kp LEFT_ARROW>;
+        };
     };
 };
 
@@ -325,40 +344,22 @@
 / {
       combos {
           compatible = "zmk,combos";
-                  combo_combo_left_parentheses {
+          combo_left_parentheses {
             timeout-ms = <200>;
             key-positions = <72 52>;
-            bindings = <&kp LPAR>;
+            bindings = <&parens_macro>;
         };
 
-        combo_combo_right_parenthesis {
-            timeout-ms = <200>;
-            key-positions = <71 57>;
-            bindings = <&kp RPAR>;
-        };
-
-        combo_combo_left_brace {
+        combo_left_brace {
             timeout-ms = <200>;
             key-positions = <72 54>;
-            bindings = <&kp LBRC>;
+            bindings = <&braces_macro>;
         };
 
-        combo_combo_left_bracket {
+        combo_left_curly {
             timeout-ms = <200>;
             key-positions = <72 53>;
-            bindings = <&kp LBKT>;
-        };
-
-        combo_combo_right_brace {
-            timeout-ms = <200>;
-            key-positions = <71 55>;
-            bindings = <&kp RBRC>;
-        };
-
-        combo_combo_right_bracket {
-            timeout-ms = <200>;
-            key-positions = <71 56>;
-            bindings = <&kp RBKT>;
+            bindings = <&curly_macro>;
         };
       };
     };
