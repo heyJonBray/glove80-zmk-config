@@ -300,6 +300,24 @@
                 , <&kp RBRC>
                 , <&kp LEFT>;
         };
+    
+        double_quote_macro: double_quote_macro {
+            label = "&DOUBLE_QUOTE_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DQT>
+                , <&kp DQT>
+                , <&kp LEFT>;
+        };
+    
+        single_quote_macro: single_quote_macro {
+            label = "&SINGLE_QUOTE_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SQT>
+                , <&kp SQT>
+                , <&kp LEFT>;
+        };
     };
 };
 
@@ -311,11 +329,11 @@
         HRM_LEFT: HRM_LEFT {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <170>;
+            tapping-term-ms = <200>;
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
             quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <150>;
             retro-tap;
             hold-trigger-key-positions = <79 17 29 41 7 18 19 21 30 31 33 43 44 61 62 78 16 20 32 42 45 52 53 54 56 57 60 63 69 70 71 72 73 75 76 77 74 58 59 40 28 5 6 8 9 55>;
             hold-trigger-on-release;
@@ -323,6 +341,20 @@
 
         // right home row mod keys
         HRM_RIGHT: HRM_RIGHT {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            quick-tap-ms = <300>;
+            require-prior-idle-ms = <150>;
+            retro-tap;
+            hold-trigger-key-positions = <0 1 4 10 11 12 13 14 15 22 23 24 25 26 27 34 35 36 37 38 39 46 47 48 49 50 51 52 53 54 55 56 57 64 65 66 67 68 69 70 71 72 73 74 2 3>;
+            hold-trigger-on-release;
+        };
+
+        // right index finger home row mod keys
+        HRM_RIGHT_INDEX: HRM_RIGHT_INDEX {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <170>;
@@ -334,6 +366,20 @@
             hold-trigger-key-positions = <0 1 4 10 11 12 13 14 15 22 23 24 25 26 27 34 35 36 37 38 39 46 47 48 49 50 51 52 53 54 55 56 57 64 65 66 67 68 69 70 71 72 73 74 2 3>;
             hold-trigger-on-release;
         };
+
+        // left index finger home row mod keys
+        HRM_LEFT_INDEX: HRM_LEFT_INDEX {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <170>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            quick-tap-ms = <300>;
+            require-prior-idle-ms = <100>;
+            retro-tap;
+            hold-trigger-key-positions = <79 17 29 41 7 18 19 21 30 31 33 43 44 61 62 78 16 20 32 42 45 52 53 54 56 57 60 63 69 70 71 72 73 75 76 77 74 58 59 40 28 5 6 8 9 55>;
+            hold-trigger-on-release;
+        };
     };
 };
 
@@ -341,13 +387,38 @@
 / {
       combos {
           compatible = "zmk,combos";
-                  combo_parenthesis {
+                  combo_capsword {
+            timeout-ms = <200>;
+            key-positions = <71 57>;
+            bindings = <&caps_word>;
+            layers = <0>;
+        };
+
+        // open and close single quotes
+        combo_single_quotes {
+            timeout-ms = <200>;
+            key-positions = <71 55>;
+            bindings = <&single_quote_macro>;
+            layers = <0>;
+        };
+
+        // open and close parenthesis
+        combo_parenthesis {
             timeout-ms = <200>;
             key-positions = <72 52>;
             bindings = <&parens_macro>;
             layers = <0>;
         };
 
+        // open and close double quotes
+        combo_double_quotes {
+            timeout-ms = <200>;
+            key-positions = <71 56>;
+            bindings = <&double_quote_macro>;
+            layers = <0>;
+        };
+
+        // open and close curly braces
         combo_curly_braces {
             timeout-ms = <200>;
             key-positions = <72 54>;
@@ -355,17 +426,12 @@
             layers = <0>;
         };
 
+        // open and close brackets
         combo_brackets {
             timeout-ms = <200>;
             key-positions = <72 53>;
             bindings = <&bracket_macro>;
             layers = <0>;
-        };
-
-        combo_capsword {
-            timeout-ms = <200>;
-            key-positions = <71 55>;
-            bindings = <&caps_word>;
         };
       };
     };
@@ -378,12 +444,12 @@
 
         layer_Base {
             bindings = <
-               &kp F1    &kp F2             &kp F3            &kp F4             &kp F5                                                                                              &kp F6             &kp F7              &kp F8                &kp F9    &kp F10
-            &kp EQUAL    &kp N1             &kp N2            &kp N3             &kp N4  &kp N5                                                                  &kp N6              &kp N7             &kp N8              &kp N9                &kp N0   &kp BSLH
-              &kp TAB     &kp Q              &kp W             &kp E              &kp R   &kp T                                                                   &kp Y               &kp U              &kp I               &kp O                 &kp P  &kp MINUS
-              &kp ESC     &kp A  &HRM_LEFT LCTRL S  &HRM_LEFT LALT D  &HRM_LEFT LSHFT F   &kp G                                                                   &kp H  &HRM_RIGHT RSHFT J  &HRM_RIGHT RALT K  &HRM_RIGHT RCTRL L  &HRM_RIGHT RGUI SEMI    &kp SQT
-            &kp GRAVE     &kp Z              &kp X             &kp C              &kp V   &kp B  &kp LSHFT  &kp LCTRL    &lower  &kp LGUI  &kp RCTRL  &kp RSHFT   &kp N               &kp M          &kp COMMA             &kp DOT              &kp FSLH  &kp PG_UP
- &magic LAYER_Magic 0  &kp HOME            &kp END          &kp LEFT          &kp RIGHT           &kp BSPC    &kp DEL  &kp LALT  &kp RALT    &kp RET  &kp SPACE                      &kp UP           &kp DOWN            &kp LBKT              &kp RBKT  &kp PG_DN
+               &kp F1    &kp F2             &kp F3            &kp F4                   &kp F5                                                                                                     &kp F6             &kp F7              &kp F8                &kp F9    &kp F10
+            &kp EQUAL    &kp N1             &kp N2            &kp N3                   &kp N4  &kp N5                                                                   &kp N6                    &kp N7             &kp N8              &kp N9                &kp N0   &kp BSLH
+              &kp TAB     &kp Q              &kp W             &kp E                    &kp R   &kp T                                                                    &kp Y                     &kp U              &kp I               &kp O                 &kp P  &kp MINUS
+              &kp ESC     &kp A  &HRM_LEFT LCTRL S  &HRM_LEFT LALT D  &HRM_LEFT_INDEX LSHFT F   &kp G                                                                    &kp H  &HRM_RIGHT_INDEX RSHFT J  &HRM_RIGHT RALT K  &HRM_RIGHT RCTRL L  &HRM_RIGHT RGUI SEMI    &kp SQT
+            &kp GRAVE     &kp Z              &kp X             &kp C                    &kp V   &kp B    &lower  &kp LSHFT  &kp LCTRL  &kp LCTRL  &kp LSHFT   &kp LGUI   &kp N                     &kp M          &kp COMMA             &kp DOT              &kp FSLH  &kp PG_UP
+ &magic LAYER_Magic 0  &kp HOME            &kp END          &kp LEFT                &kp RIGHT          &kp BSPC    &kp DEL   &kp LALT   &kp RALT    &kp RET  &kp SPACE                            &kp UP           &kp DOWN            &kp LBKT              &kp RBKT  &kp PG_DN
             >;
         };
 
