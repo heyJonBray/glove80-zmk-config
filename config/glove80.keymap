@@ -560,9 +560,9 @@
         layer_Base {
             bindings = <
                &kp F1    &kp F2             &kp F3            &kp F4                   &kp F5                                                                                                     &kp F6             &kp F7              &kp F8                &kp F9    &kp F10
-              &kp SQT    &kp N1             &kp N2            &kp N3                   &kp N4  &kp N5                                                                   &kp N6                    &kp N7             &kp N8              &kp N9                &kp N0   &kp BSLH
+            &kp EQUAL    &kp N1             &kp N2            &kp N3                   &kp N4  &kp N5                                                                   &kp N6                    &kp N7             &kp N8              &kp N9                &kp N0   &kp BSLH
               &kp TAB     &kp Q              &kp W             &kp E                    &kp R   &kp T                                                                    &kp Y                     &kp U              &kp I               &kp O                 &kp P  &kp MINUS
-              &kp ESC     &kp A  &HRM_LEFT LCTRL S  &HRM_LEFT LALT D  &HRM_LEFT_INDEX LSHFT F   &kp G                                                                    &kp H  &HRM_RIGHT_INDEX RSHFT J  &HRM_RIGHT RALT K  &HRM_RIGHT RCTRL L  &HRM_RIGHT RGUI SEMI  &kp EQUAL
+              &kp ESC     &kp A  &HRM_LEFT LCTRL S  &HRM_LEFT LALT D  &HRM_LEFT_INDEX LSHFT F   &kp G                                                                    &kp H  &HRM_RIGHT_INDEX RSHFT J  &HRM_RIGHT RALT K  &HRM_RIGHT RCTRL L  &HRM_RIGHT RGUI SEMI    &kp SQT
             &kp GRAVE     &kp Z              &kp X             &kp C                    &kp V   &kp B    &lower  &kp LSHFT  &kp LCTRL  &kp LCTRL  &kp LSHFT   &kp LGUI   &kp N                     &kp M          &kp COMMA             &kp DOT              &kp FSLH  &kp PG_UP
  &magic LAYER_Magic 0  &kp HOME            &kp END          &kp LEFT                &kp RIGHT          &kp BSPC    &kp DEL   &kp LALT   &kp RALT    &kp RET  &kp SPACE                            &kp UP           &kp DOWN            &kp LBKT              &kp RBKT  &kp PG_DN
             >;
