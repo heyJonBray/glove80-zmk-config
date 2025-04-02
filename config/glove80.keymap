@@ -274,6 +274,7 @@
 / {
     macros {
     
+        // double parentheses, left
         parens_macro: parens_macro {
             label = "&PARENS_MACRO";
             compatible = "zmk,behavior-macro";
@@ -283,6 +284,7 @@
                 , <&kp LEFT>;
         };
     
+        // double brackets, left
         bracket_macro: bracket_macro {
             label = "&BRACKET_MACRO";
             compatible = "zmk,behavior-macro";
@@ -292,6 +294,7 @@
                 , <&kp LEFT>;
         };
     
+        // double curly braces, left
         curly_macro: curly_macro {
             label = "&CURLY_MACRO";
             compatible = "zmk,behavior-macro";
@@ -301,6 +304,7 @@
                 , <&kp LEFT>;
         };
     
+        // double double quotes, left
         double_quote_macro: double_quote_macro {
             label = "&DOUBLE_QUOTE_MACRO";
             compatible = "zmk,behavior-macro";
@@ -310,6 +314,7 @@
                 , <&kp LEFT>;
         };
     
+        // double single quotes, left
         single_quote_macro: single_quote_macro {
             label = "&SINGLE_QUOTE_MACRO";
             compatible = "zmk,behavior-macro";
@@ -317,6 +322,61 @@
             bindings = <&kp SQT>
                 , <&kp SQT>
                 , <&kp LEFT>;
+        };
+    
+        // Ctrl + S
+        save_file_macro: save_file_macro {
+            label = "&SAVE_FILE_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LCTRL>
+                , <&kp S>;
+        };
+    
+        // <> + left
+        angle_brackets: angle_brackets {
+            label = "&ANGLE_BRACKETS";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LT>
+                , <&kp GT>
+                , <&kp LEFT>;
+        };
+    
+        // ->
+        arrow_operator: arrow_operator {
+            label = "&ARROW_OPERATOR";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp KP_MINUS>
+                , <&kp GT>;
+        };
+    
+        // =>
+        fat_arrow: fat_arrow {
+            label = "&FAT_ARROW";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp KP_EQUAL>
+                , <&kp GT>;
+        };
+    
+        // Ctrl + Z
+        undo_macro: undo_macro {
+            label = "&UNDO_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LCTRL>
+                , <&kp Z>;
+        };
+    
+        // Ctrl + Y
+        redo_macro: redo_macro {
+            label = "&REDO_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LCTRL>
+                , <&kp Y>;
         };
     };
 };
@@ -353,7 +413,7 @@
             hold-trigger-on-release;
         };
 
-        // right index finger home row mod keys
+        // right index finger home row mod keys (quicker typing)
         HRM_RIGHT_INDEX: HRM_RIGHT_INDEX {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -367,7 +427,7 @@
             hold-trigger-on-release;
         };
 
-        // left index finger home row mod keys
+        // left index finger home row mod keys (quicker typing)
         HRM_LEFT_INDEX: HRM_LEFT_INDEX {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -445,9 +505,9 @@
         layer_Base {
             bindings = <
                &kp F1    &kp F2             &kp F3            &kp F4                   &kp F5                                                                                                     &kp F6             &kp F7              &kp F8                &kp F9    &kp F10
-            &kp EQUAL    &kp N1             &kp N2            &kp N3                   &kp N4  &kp N5                                                                   &kp N6                    &kp N7             &kp N8              &kp N9                &kp N0   &kp BSLH
+              &kp SQT    &kp N1             &kp N2            &kp N3                   &kp N4  &kp N5                                                                   &kp N6                    &kp N7             &kp N8              &kp N9                &kp N0   &kp BSLH
               &kp TAB     &kp Q              &kp W             &kp E                    &kp R   &kp T                                                                    &kp Y                     &kp U              &kp I               &kp O                 &kp P  &kp MINUS
-              &kp ESC     &kp A  &HRM_LEFT LCTRL S  &HRM_LEFT LALT D  &HRM_LEFT_INDEX LSHFT F   &kp G                                                                    &kp H  &HRM_RIGHT_INDEX RSHFT J  &HRM_RIGHT RALT K  &HRM_RIGHT RCTRL L  &HRM_RIGHT RGUI SEMI    &kp SQT
+              &kp ESC     &kp A  &HRM_LEFT LCTRL S  &HRM_LEFT LALT D  &HRM_LEFT_INDEX LSHFT F   &kp G                                                                    &kp H  &HRM_RIGHT_INDEX RSHFT J  &HRM_RIGHT RALT K  &HRM_RIGHT RCTRL L  &HRM_RIGHT RGUI SEMI  &kp EQUAL
             &kp GRAVE     &kp Z              &kp X             &kp C                    &kp V   &kp B    &lower  &kp LSHFT  &kp LCTRL  &kp LCTRL  &kp LSHFT   &kp LGUI   &kp N                     &kp M          &kp COMMA             &kp DOT              &kp FSLH  &kp PG_UP
  &magic LAYER_Magic 0  &kp HOME            &kp END          &kp LEFT                &kp RIGHT          &kp BSPC    &kp DEL   &kp LALT   &kp RALT    &kp RET  &kp SPACE                            &kp UP           &kp DOWN            &kp LBKT              &kp RBKT  &kp PG_DN
             >;
@@ -455,12 +515,12 @@
 
         layer_Lower {
             bindings = <
-         &kp C_BRI_DN  &kp C_BRI_UP      &kp C_PREV        &kp C_PP       &kp C_NEXT                                                                                    &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP            &none  &kp PAUSE_BREAK
-               &trans         &none           &none           &none            &none   &kp HOME                                                   &kp LEFT_PARENTHESIS  &kp KP_NUM  &kp KP_EQUAL  &kp KP_SLASH  &kp KP_MULTIPLY  &kp PRINTSCREEN
-               &trans         &none           &none    &kp UP_ARROW            &none    &kp END                                                  &kp RIGHT_PARENTHESIS   &kp KP_N7     &kp KP_N8     &kp KP_N9     &kp KP_MINUS   &kp SCROLLLOCK
-               &trans         &none  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp PG_UP                                                            &kp PERCENT   &kp KP_N4     &kp KP_N5     &kp KP_N6      &kp KP_PLUS            &none
-               &trans     &kp K_APP           &none         &kp F11          &kp F12  &kp PG_DN  &trans  &trans   &to 0  &trans  &trans  &trans              &kp COMMA   &kp KP_N1     &kp KP_N2     &kp KP_N3     &kp KP_ENTER           &trans
- &magic LAYER_Magic 0      &kp CAPS         &kp INS         &kp F11          &kp F12             &trans  &trans  &trans  &trans  &trans  &trans                          &kp KP_N0     &kp KP_N0    &kp KP_DOT     &kp KP_ENTER           &trans
+         &kp C_BRI_DN  &kp C_BRI_UP      &kp C_PREV        &kp C_PP       &kp C_NEXT                                                                                                                &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP            &none  &kp PAUSE_BREAK
+               &trans         &none     &kp KP_PLUS    &kp KP_MINUS     &kp KP_EQUAL   &kp HOME                                                                               &kp LEFT_PARENTHESIS  &kp KP_NUM  &kp KP_EQUAL  &kp KP_SLASH  &kp KP_MULTIPLY  &kp PRINTSCREEN
+               &trans         &none           &none    &kp UP_ARROW            &none    &kp END                                                                              &kp RIGHT_PARENTHESIS   &kp KP_N7     &kp KP_N8     &kp KP_N9     &kp KP_MINUS   &kp SCROLLLOCK
+               &trans         &none  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp PG_UP                                                                                        &kp PERCENT   &kp KP_N4     &kp KP_N5     &kp KP_N6      &kp KP_PLUS            &none
+               &trans     &kp K_APP           &none         &kp F11          &kp F12  &kp PG_DN  &trans  &trans   &to 0  &arrow_operator        &fat_arrow  &angle_brackets              &kp COMMA   &kp KP_N1     &kp KP_N2     &kp KP_N3     &kp KP_ENTER           &trans
+ &magic LAYER_Magic 0      &kp CAPS         &kp INS         &kp F11          &kp F12             &trans  &trans  &trans      &undo_macro  &save_file_macro      &redo_macro                          &kp KP_N0     &kp KP_N0    &kp KP_DOT     &kp KP_ENTER           &trans
             >;
         };
 
