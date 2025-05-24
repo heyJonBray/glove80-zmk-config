@@ -1,7 +1,6 @@
-
 /*
  * Copyright (c) 2020 The ZMK Contributors
- * Copyright (c) 2023 Innaworks Development Limited, trading as MoErgo
+ * Copyright (c) 2025 Innaworks Development Limited, trading as MoErgo
  *
  * SPDX-License-Identifier: MIT
  */
@@ -37,8 +36,10 @@
 /* Custom Device-tree */
 
 
+/* Input Listeners */
 
-/* Glove80 system behavior & macros */
+
+/* System behavior and Macros */
 / {
     behaviors {
         // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
@@ -273,7 +274,7 @@
 /* Automatically generated macro definitions */
 / {
     macros {
-    
+
         parens_macro: parens_macro {
             label = "&PARENS_MACRO";
             compatible = "zmk,behavior-macro";
@@ -282,7 +283,7 @@
                 , <&kp RPAR>
                 , <&kp LEFT>;
         };
-    
+
         bracket_macro: bracket_macro {
             label = "&BRACKET_MACRO";
             compatible = "zmk,behavior-macro";
@@ -291,7 +292,7 @@
                 , <&kp RBKT>
                 , <&kp LEFT>;
         };
-    
+
         curly_macro: curly_macro {
             label = "&CURLY_MACRO";
             compatible = "zmk,behavior-macro";
@@ -300,7 +301,7 @@
                 , <&kp RBRC>
                 , <&kp LEFT>;
         };
-    
+
         double_quote_macro: double_quote_macro {
             label = "&DOUBLE_QUOTE_MACRO";
             compatible = "zmk,behavior-macro";
@@ -309,7 +310,7 @@
                 , <&kp DQT>
                 , <&kp LEFT>;
         };
-    
+
         single_quote_macro: single_quote_macro {
             label = "&SINGLE_QUOTE_MACRO";
             compatible = "zmk,behavior-macro";
@@ -318,7 +319,7 @@
                 , <&kp SQT>
                 , <&kp LEFT>;
         };
-    
+
         // Ctrl + S
         save_file_macro: save_file_macro {
             label = "&SAVE_FILE_MACRO";
@@ -327,7 +328,7 @@
             bindings = <&kp LCTRL>
                 , <&kp S>;
         };
-    
+
         // <> + left
         angle_brackets_macro: angle_brackets_macro {
             label = "&ANGLE_BRACKETS_MACRO";
@@ -337,7 +338,7 @@
                 , <&kp GT>
                 , <&kp LEFT>;
         };
-    
+
         // ->
         arrow_operator_macro: arrow_operator_macro {
             label = "&ARROW_OPERATOR_MACRO";
@@ -346,7 +347,7 @@
             bindings = <&kp KP_MINUS>
                 , <&kp GT>;
         };
-    
+
         // =>
         fat_arrow_macro: fat_arrow_macro {
             label = "&FAT_ARROW_MACRO";
@@ -355,7 +356,7 @@
             bindings = <&kp KP_EQUAL>
                 , <&kp GT>;
         };
-    
+
         // Ctrl + Z
         undo_macro: undo_macro {
             label = "&UNDO_MACRO";
@@ -364,7 +365,7 @@
             bindings = <&kp LCTRL>
                 , <&kp Z>;
         };
-    
+
         // Ctrl + Y
         redo_macro: redo_macro {
             label = "&REDO_MACRO";
@@ -373,7 +374,7 @@
             bindings = <&kp LCTRL>
                 , <&kp Y>;
         };
-    
+
         // const variableName = () => { };
         js_arrow_function_macro: js_arrow_function_macro {
             label = "&JS_ARROW_FUNCTION_MACRO";
@@ -410,7 +411,7 @@
                 , <&kp LEFT>
                 , <&kp LEFT>;
         };
-    
+
         // console.log();
         console_log_macro: console_log_macro {
             label = "&CONSOLE_LOG_MACRO";
@@ -431,6 +432,16 @@
                 , <&kp RPAR>
                 , <&kp SEMI>
                 , <&kp LEFT>
+                , <&kp LEFT>;
+        };
+
+        // `` + left
+        backtick_macro: backtick_macro {
+            label = "&BACKTICK_MACRO";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp GRAVE>
+                , <&kp GRAVE>
                 , <&kp LEFT>;
         };
     };
@@ -546,6 +557,14 @@
             timeout-ms = <200>;
             key-positions = <72 53>;
             bindings = <&bracket_macro>;
+            layers = <0>;
+        };
+
+        // open and close backticks for code formatting
+        combo_backtick_combo {
+            timeout-ms = <200>;
+            key-positions = <52 46>;
+            bindings = <&backtick_macro>;
             layers = <0>;
         };
       };
